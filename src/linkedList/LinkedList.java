@@ -33,6 +33,34 @@ public class LinkedList<T> {
         size++;
     }
 
+    public void addAt(int index, T data) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("invalid index");
+        }
+
+        Node<T> node = new Node<>(data);
+        if (index == 0) {
+
+            node.setNext(head);
+            head = node;
+
+        } else {
+
+
+            Node<T> current = head;
+
+            for (int i = 0; i < index; i++) {
+                current = current.getNext();
+            }
+
+            Node<T> nextNode = current.getNext();
+            node.setNext(nextNode);
+            current.setNext(node);
+
+        }
+        size++;
+    }
+
     public T removeLast() {
         T removedData;
 
@@ -76,7 +104,7 @@ public class LinkedList<T> {
                     current.setNext(current.getNext().getNext());
                     size--;
                     return true;
-                }else {
+                } else {
                     current = current.getNext();
                 }
 
@@ -85,50 +113,51 @@ public class LinkedList<T> {
         return false;
     }
 
-    public int removeAll(T data){
+    public int removeAll(T data) {
         int count = 0;
 
-        if(data == null || head == null){
+        if (data == null || head == null) {
             return 0;
         }
 
-        while(head != null && head.getData().equals(data)){
+        while (head != null && head.getData().equals(data)) {
             head = head.getNext();
             size--;
             count++;
         }
 
-        if(head == null){
+        if (head == null) {
             return count;
         }
 
-       Node<T> current = head;
-       while (current.getNext() != null){
-           if(current.getNext().getData().equals(data)){
-               current.setNext(current.getNext().getNext());
-               size--;
-               count++;
-           }else{
-               current = current.getNext();
-           }
-       }
+        Node<T> current = head;
+        while (current.getNext() != null) {
+            if (current.getNext().getData().equals(data)) {
+                current.setNext(current.getNext().getNext());
+                size--;
+                count++;
+            } else {
+                current = current.getNext();
+            }
+        }
 
         return count;
     }
 
-    public T remove(int index){
+    public T remove(int index) {
         T removedData;
 
-        if(index < 0 || index > size){
-            throw new IllegalStateException("Given Index Invalid");
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Given Index Invalid");
         }
 
-        if(index == 0){
+        if (index == 0) {
             removedData = head.getData();
             head = head.getNext();
-        }else{
+        } else {
             Node<T> current = head;
-            for(int i = 0; i < index - 1; i++){
+            // stopping before the intended index
+            for (int i = 0; i < index - 1; i++) {
                 current = current.getNext();
             }
 
@@ -139,8 +168,39 @@ public class LinkedList<T> {
         return removedData;
     }
 
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Given Index Invalid");
+        }
+
+        Node<T> current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+
+        return current.getData();
+    }
+
+    public boolean contains(T data) {
+        Node<T> current = head;
+
+        while (current != null) {
+            if (current.getData().equals(data)) {
+                return true;
+            }
+            current = current.getNext();
+        }
+
+        return false;
+    }
 
     public void display() {
 
+        Node<T> current = head;
+        while(current != null){
+            System.out.print(current.getData()+" -> ");
+            current = current.getNext();
+        }
+        System.out.println("null");
     }
 }
