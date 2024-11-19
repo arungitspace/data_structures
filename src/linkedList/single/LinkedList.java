@@ -1,4 +1,4 @@
-package linkedList;
+package linkedList.single;
 
 public class LinkedList<T> {
 
@@ -49,7 +49,7 @@ public class LinkedList<T> {
 
             Node<T> current = head;
 
-            for (int i = 0; i < index; i++) {
+            for (int i = 0; i < index - 1; i++) {
                 current = current.getNext();
             }
 

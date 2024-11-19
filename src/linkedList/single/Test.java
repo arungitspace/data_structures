@@ -1,4 +1,4 @@
-package linkedList;
+package linkedList.single;
 
 public class Test {
     public static void main(String[] args) {
@@ -10,7 +10,8 @@ public class Test {
         myList.add(1663);
         System.out.println(myList.size());
         myList.display();
-        myList.removeLast();
+        System.out.println(myList.remove(2));
+        myList.addAt(2,0);
         System.out.println(myList.size());
         myList.display();
     }
