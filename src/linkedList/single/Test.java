@@ -8,11 +8,7 @@ public class Test {
         myList.add(136);
         myList.add(613);
         myList.add(1663);
-        System.out.println(myList.size());
         myList.display();
-        System.out.println(myList.remove(2));
-        myList.addAt(2,0);
-        System.out.println(myList.size());
-        myList.display();
+        myList.reverse();
     }
 }

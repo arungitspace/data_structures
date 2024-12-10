@@ -203,4 +203,20 @@ public class LinkedList<T> {
         }
         System.out.println("null");
     }
+
+    public void reverse(){
+        Node<T> node = head;
+        Node<T> prev = null;
+        while(node != null){
+            Node<T> nextOfHead = node.getNext();
+            node.setNext(prev);
+            prev = node;
+            node = nextOfHead;
+        }
+
+        while(prev != null){
+            System.out.print(prev.getData()+" -> ");
+            prev = prev.getNext();
+        }
+    }
 }

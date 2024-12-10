@@ -1,6 +1,7 @@
-package hashing;
+package hashing.hashtable;
 
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class HashTable<K,V> {
@@ -63,9 +64,16 @@ public class HashTable<K,V> {
     }
 
     public boolean delete(K key){
-        
+        int index = getBucketIndex(key);
+        LinkedList<Node> nodes = elements[index];
+        boolean result = nodes.removeIf(node -> node.key.equals(key));
+        size--;
+        return result;
+    }
 
-        return
+    public void display(){
+        System.out.println("size :"+size);
+        System.out.println(Arrays.toString(elements));
     }
 
 }
